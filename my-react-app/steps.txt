@@ -1,3 +1,5 @@
+
+created a "react-projects" folder and open in cmd, run the following commands
 echo "# react-projects" >> README.md
 git init
 git add README.md
