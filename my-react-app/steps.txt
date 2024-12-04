@@ -1,5 +1,3 @@
-"# react-projects" 
-
 echo "# react-projects" >> README.md
 git init
 git add README.md
