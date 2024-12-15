@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import Counter from './components/counter'
+import Counter from './components/counter';
+import Conditional from './components/Conditional';
 import './App.css'
 
 function App() {
@@ -7,7 +7,9 @@ function App() {
     <>
       <h1>Vite + React project</h1>
       <div className="card">
-        <Counter></Counter>      
+        <Counter/>
+        <h3>conditional example</h3>    
+        <Conditional/>
       </div>
     </>
   )
