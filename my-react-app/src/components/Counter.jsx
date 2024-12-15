@@ -4,10 +4,10 @@ import { useState } from 'react'
 function Counter() {
   const [count, setCount] = useState(0);
 
-  function IncrementCounter() {
+  function incrementCounter() {
     return setCount(count+1)
   }
-  function DecrementCounter() {
+  function decrementCounter() {
     if(count > 0) {
       return setCount(count-1)
     }
@@ -18,10 +18,10 @@ function Counter() {
       <h3> count is  {count}</h3>
       <div className="card">
         
-        <button onClick={IncrementCounter}>
+        <button onClick={incrementCounter}>
          Increment
         </button>
-        <button onClick={DecrementCounter}>
+        <button onClick={decrementCounter}>
           Decrement
         </button>
       </div>
