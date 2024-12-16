@@ -1,8 +1,10 @@
-import Counter from './components/counter';
-import Conditional from './components/Conditional';
+// import Counter from './components/counter';
+// import Conditional from './components/Conditional';
 import './App.css'
-import Ternary from './components/Ternary';
-import RenderList from './components/RenderList';
+// import Ternary from './components/Ternary';
+// import RenderList from './components/RenderList';
+import UseStateExample from './components/hooks/UseSateExample';
+import UseRefExample from './components/hooks/UseRefExample';
 
 function App() {
   return (
@@ -13,9 +15,12 @@ function App() {
         <h3>conditional example</h3>    
         <Conditional/>
         <h3>Ternary component</h3>
-        <Ternary/> */}
+        <Ternary/> 
 
-        <RenderList/>
+        <RenderList/>*/}
+
+        <UseStateExample/>
+        <UseRefExample/>
       </div>
     </>
   )
