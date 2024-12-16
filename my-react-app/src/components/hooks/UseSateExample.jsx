@@ -1,5 +1,4 @@
 //import liraries
-import React from 'react';
 import { useState } from 'react';
 
 // create a component
