@@ -1,0 +1,80 @@
+useEffect
+============
+The useEffect hook in React is used to handle side effects in functional components. Side effects can include tasks like fetching data, subscribing to events, updating the DOM, or setting up subscriptions.
+
+useEffect(() => {
+  // Side effect logic here
+  return () => {
+    // Cleanup logic here (optional)
+  };
+}, [dependencies]);
+
+Key Concepts
+===========
+Side Effect Logic: Code to execute after the component renders.
+Cleanup Logic: Optional code to clean up resources, like subscriptions or timers.
+Dependency Array: An array of variables that trigger the effect when they change.
+
+Types of useEffect Usage
+============================
+1. Without Dependencies
+---------------------------
+useEffect(() => {
+  console.log('Component rendered or re-rendered');
+});
+
+
+-> Runs after every render (initial and updates).
+-> Avoid this unless you really need to.
+
+2. With an Empty Dependency Array ([])
+-------------------
+useEffect(() => {
+  console.log('Component mounted');
+}, []);
+
+
+-> Runs only once after the initial render (component mount).
+-> Often used for actions like data fetching or setting up subscriptions.
+
+3. With Dependencies
+-------------------
+useEffect(() => {
+  console.log('Count changed to:', count);
+}, [count]);
+
+-> Runs when variables in the dependency array change.
+-> Useful for responding to specific state or prop changes.
+
+4. Cleanup Function
+--------------------
+useEffect(() => {
+  const timer = setInterval(() => {
+    console.log('Timer running');
+  }, 1000);
+
+  return () => {
+    clearInterval(timer); // Cleanup when the component unmounts
+    console.log('Cleanup executed');
+  };
+}, []);
+
+
+-> The cleanup function is run before the effect is re-executed and when the component unmounts.
+-> Useful for cleaning up subscriptions, event listeners, or intervals.
+
+
+Common Use Cases
+============
+-> Fetching data from APIs.
+-> Subscribing/unsubscribing to events (e.g., window resize).
+-> Setting up and tearing down timers.
+-> Animating DOM elements.
+
+
+Tips and Best Practices
+========================
+1. Keep Dependencies Accurate: Always include variables used inside useEffect in the dependency array.
+2. Avoid Infinite Loops: If dependencies change on every render, it may cause an infinite loop.
+3. Use Cleanup Wisely: Use the cleanup function for cleaning resources like event listeners or subscriptions.
+4. Separate Concerns: Split different side effects into separate useEffect calls.

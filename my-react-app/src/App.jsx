@@ -3,8 +3,9 @@
 import './App.css'
 // import Ternary from './components/Ternary';
 // import RenderList from './components/RenderList';
-import UseStateExample from './components/hooks/UseSateExample';
-import UseRefExample from './components/hooks/UseRefExample';
+// import UseStateExample from './components/hooks/UseSateExample';
+// import UseRefExample from './components/hooks/UseRefExample';
+import UseEffectExample from './components/hooks/UseEffectExample';
 
 function App() {
   return (
@@ -17,10 +18,11 @@ function App() {
         <h3>Ternary component</h3>
         <Ternary/> 
 
-        <RenderList/>*/}
+        <RenderList/>
 
         <UseStateExample/>
-        <UseRefExample/>
+        <UseRefExample/>*/}
+        <UseEffectExample/>
       </div>
     </>
   )
