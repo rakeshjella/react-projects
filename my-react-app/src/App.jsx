@@ -5,7 +5,8 @@ import './App.css'
 // import RenderList from './components/RenderList';
 // import UseStateExample from './components/hooks/UseSateExample';
 // import UseRefExample from './components/hooks/UseRefExample';
-import UseEffectExample from './components/hooks/UseEffectExample';
+// import UseEffectExample from './components/hooks/UseEffectExample';
+import CustomUseEffect from './components/hooks/customUseEffect'
 
 function App() {
   return (
@@ -21,8 +22,9 @@ function App() {
         <RenderList/>
 
         <UseStateExample/>
-        <UseRefExample/>*/}
-        <UseEffectExample/>
+        <UseRefExample/>
+        <UseEffectExample/>*/}
+        <CustomUseEffect/>
       </div>
     </>
   )
