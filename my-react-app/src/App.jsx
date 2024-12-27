@@ -6,7 +6,7 @@ import './App.css'
 // import UseStateExample from './components/hooks/UseSateExample';
 // import UseRefExample from './components/hooks/UseRefExample';
 // import UseEffectExample from './components/hooks/UseEffectExample';
-import CustomUseEffect from './components/hooks/customUseEffect'
+import CustomUseHook from './components/hooks/CustomUseHook'
 
 function App() {
   return (
@@ -24,7 +24,7 @@ function App() {
         <UseStateExample/>
         <UseRefExample/>
         <UseEffectExample/>*/}
-        <CustomUseEffect/>
+        <CustomUseHook/>
       </div>
     </>
   )
