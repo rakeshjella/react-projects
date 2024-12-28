@@ -1,0 +1,337 @@
+React provides several hooks, each with a specific purpose to simplify state and lifecycle management in functional components. Here’s an overview of the hooks categorized into basic, additional, and future/experimental hooks:
+
+1. Basic Hooks
+These are the most commonly used hooks.
+
+useState
+----------------->
+Manages state in a functional component.
+
+import React, { useState } from "react";
+
+function Counter() {
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={() => setCount(count + 1)}>Increment</button>
+    </div>
+  );
+}
+
+
+useEffect
+------------------------------------------------->
+Handles side effects like fetching data or DOM updates.
+
+import React, { useEffect, useState } from "react";
+
+function Timer() {
+  const [time, setTime] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => setTime((prev) => prev + 1), 1000);
+
+    return () => clearInterval(interval); // Cleanup on unmount
+  }, []);
+
+  return <p>Time: {time}s</p>;
+}
+
+
+useContext
+---------------------------------------------------------------------->
+Allows you to consume values from a React context without manually subscribing.
+
+
+import React, { createContext, useContext } from "react";
+
+const ThemeContext = createContext("light");
+
+function ThemeComponent() {
+  const theme = useContext(ThemeContext);
+  return <p>Theme: {theme}</p>;
+}
+
+export default function App() {
+  return (
+    <ThemeContext.Provider value="dark">
+      <ThemeComponent />
+    </ThemeContext.Provider>
+  );
+}
+
+
+2. Additional Hooks
+============================
+++++++++++++++++++++++
+=============================
+These provide more advanced functionality.
+
+useReducer
+---------------------------------------------------------------->
+A more complex state management alternative to useState.
+
+import React, { useReducer } from "react";
+
+function reducer(state, action) {
+  switch (action.type) {
+    case "increment":
+      return { count: state.count + 1 };
+    case "decrement":
+      return { count: state.count - 1 };
+    default:
+      throw new Error();
+  }
+}
+
+function Counter() {
+  const [state, dispatch] = useReducer(reducer, { count: 0 });
+
+  return (
+    <div>
+      <p>Count: {state.count}</p>
+      <button onClick={() => dispatch({ type: "increment" })}>+</button>
+      <button onClick={() => dispatch({ type: "decrement" })}>-</button>
+    </div>
+  );
+}
+
+
+useMemo
+--------------------------------------------------------->
+Optimizes performance by memoizing expensive calculations.
+
+import React, { useMemo, useState } from "react";
+
+function ExpensiveComponent({ value }) {
+  const expensiveCalculation = useMemo(() => {
+    console.log("Calculating...");
+    return value * 2;
+  }, [value]);
+
+  return <p>Result: {expensiveCalculation}</p>;
+}
+
+function App() {
+  const [value, setValue] = useState(1);
+  return (
+    <div>
+      <ExpensiveComponent value={value} />
+      <button onClick={() => setValue(value + 1)}>Increment</button>
+    </div>
+  );
+}
+
+
+useCallback
+-------------------------------------------------------------->
+
+Memoizes a callback function to avoid unnecessary re-renders.
+
+import React, { useState, useCallback } from "react";
+
+function Button({ onClick }) {
+  console.log("Button rendered");
+  return <button onClick={onClick}>Click me</button>;
+}
+
+function App() {
+  const [count, setCount] = useState(0);
+
+  const handleClick = useCallback(() => {
+    setCount((prev) => prev + 1);
+  }, []);
+
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <Button onClick={handleClick} />
+    </div>
+  );
+}
+
+
+useRef
+------------------------------------------------------->
+Stores a mutable reference to an element or value that doesn’t trigger a re-render.
+
+import React, { useRef } from "react";
+
+function FocusInput() {
+  const inputRef = useRef();
+
+  const handleFocus = () => {
+    inputRef.current.focus();
+  };
+
+  return (
+    <div>
+      <input ref={inputRef} type="text" />
+      <button onClick={handleFocus}>Focus Input</button>
+    </div>
+  );
+}
+
+
+useLayoutEffect
+------------------------------------------------->
+
+Similar to useEffect, but fires synchronously after layout changes.
+
+import React, { useLayoutEffect, useRef } from "react";
+
+function LayoutEffectExample() {
+  const divRef = useRef();
+
+  useLayoutEffect(() => {
+    divRef.current.style.backgroundColor = "yellow";
+  }, []);
+
+  return <div ref={divRef}>This is highlighted</div>;
+}
+
+
+useImperativeHandle
+----------------------------------------------------------------->
+
+Customizes the instance value exposed when using React.forwardRef
+
+
+import React, { forwardRef, useImperativeHandle, useRef } from "react";
+
+const CustomInput = forwardRef((props, ref) => {
+  const inputRef = useRef();
+
+  useImperativeHandle(ref, () => ({
+    focusInput: () => {
+      inputRef.current.focus();
+    },
+  }));
+
+  return <input ref={inputRef} />;
+});
+
+function App() {
+  const inputRef = useRef();
+
+  return (
+    <div>
+      <CustomInput ref={inputRef} />
+      <button onClick={() => inputRef.current.focusInput()}>Focus Input</button>
+    </div>
+  );
+}
+
+
+3. Future/Experimental Hooks
+================================
+++++++++++++++++++++++++++++++
+=================================
+
+These are still experimental and may change in the future.
+
+use
+---------------------------------------->
+
+Purpose: Used for suspense-driven asynchronous rendering.
+Primary Use Case: Allows functions (like async calls or promises) to suspend rendering until the data is available.
+How it works:
+Suspends the rendering of the component until the promise resolves.
+Primarily used in server components or streaming use cases.
+Reduces the need for explicit state management for async data fetching in some cases.
+
+import { use } from "react";
+
+function MyComponent() {
+  const data = use(fetchData());
+
+  return <div>Data: {data}</div>;
+}
+
+async function fetchData() {
+  return "Hello, world!";
+}
+
+
+When to Use What
+------+++++------
+Use useEffect when you need to:
+********************************
+Execute code after rendering (e.g., DOM updates or subscriptions).
+Manage lifecycle hooks in functional components.
+
+Use use() when:
+*******************************
+Working in a Suspense-enabled environment.
+You want a simpler approach for handling async calls (e.g., in server-side rendering or streaming).
+
+useTransition
+----------------------------------------------------------->
+Manages state transitions for smooth UI updates.
+
+import React, { useState, useTransition } from "react";
+
+function App() {
+  const [isPending, startTransition] = useTransition();
+  const [count, setCount] = useState(0);
+
+  const handleClick = () => {
+    startTransition(() => {
+      setCount((prev) => prev + 1);
+    });
+  };
+
+  return (
+    <div>
+      <p>Count: {count}</p>
+      {isPending ? <p>Updating...</p> : null}
+      <button onClick={handleClick}>Increment</button>
+    </div>
+  );
+}
+
+
+useDeferredValue
+-------------------------------------->
+
+
+Delays updates for better performance.
+
+
+import React, { useState, useDeferredValue } from "react";
+
+function App() {
+  const [value, setValue] = useState("");
+  const deferredValue = useDeferredValue(value);
+
+  return (
+    <div>
+      <input onChange={(e) => setValue(e.target.value)} />
+      <p>Deferred: {deferredValue}</p>
+    </div>
+  );
+}
+
+
+Basic Hooks:
+========================
+useState
+useEffect
+useContext
+
+Additional Hooks:
+=======================
+useReducer
+useCallback
+useMemo
+useRef
+useLayoutEffect
+useImperativeHandle
+
+Experimental/Future Hooks:
+==============================
+use
+useTransition
+useDeferredValue
