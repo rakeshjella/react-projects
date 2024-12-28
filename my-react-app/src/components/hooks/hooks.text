@@ -315,14 +315,113 @@ function App() {
 }
 
 
+********************************
++++++++++++++++++++++++++++++
+---------------------------------
+
+
+
+
+useId (Introduced in React 18)
+------------------------------------------>
+
+Purpose: Generates unique IDs for accessibility or dynamic elements.
+Use Case: Helps avoid ID collisions in the DOM.
+
+import React, { useId } from "react";
+
+function Form() {
+  const id = useId();
+
+  return (
+    <div>
+      <label htmlFor={`${id}-username`}>Username:</label>
+      <input id={`${id}-username`} type="text" />
+    </div>
+  );
+}
+
+
+useSyncExternalStore (Introduced in React 18)
+--------------------------------------------------------->
+
+Purpose: Reads values from external stores while maintaining a consistent UI.
+Use Case: Designed for libraries like Redux or Zustand to read external states.
+
+
+import { useSyncExternalStore } from "react";
+
+function useWindowWidth() {
+  return useSyncExternalStore(
+    (listener) => {
+      window.addEventListener("resize", listener);
+      return () => window.removeEventListener("resize", listener);
+    },
+    () => window.innerWidth
+  );
+}
+
+function WindowWidth() {
+  const width = useWindowWidth();
+  return <p>Window width: {width}px</p>;
+}
+
+
+useInsertionEffect (Introduced in React 18)
+----------------------------------------------------->
+
+Purpose: For injecting styles into the DOM before rendering.
+Use Case: Useful for libraries like Emotion or styled-components for CSS-in-JS solutions.
+Important: Runs before DOM mutations.
+
+import React, { useInsertionEffect } from "react";
+
+function StyledComponent() {
+  useInsertionEffect(() => {
+    const style = document.createElement("style");
+    style.textContent = "body { background-color: lightblue; }";
+    document.head.appendChild(style);
+
+    return () => {
+      document.head.removeChild(style);
+    };
+  }, []);
+
+  return <p>This component changes the background color!</p>;
+}
+
+--------------------------------------------------------------->
+useDebugValue
+---------------------------------------------------------------->
+Purpose: Customizes how hooks appear in React Developer Tools.
+Use Case: Mostly used in custom hooks for debugging purposes.
+
+import React, { useState, useDebugValue } from "react";
+
+function useCustomHook(value) {
+  useDebugValue(value > 5 ? "High" : "Low");
+  const [state, setState] = useState(value);
+  return [state, setState];
+}
+
+function App() {
+  const [value, setValue] = useCustomHook(3);
+  return <p>Value: {value}</p>;
+}
+
+
+
+Full List of React Hooks (as of React 18+)
+------------------------------------------
+------------------------------------------
 Basic Hooks:
-========================
+===============>
 useState
 useEffect
 useContext
 
 Additional Hooks:
-=======================
+==================>
 useReducer
 useCallback
 useMemo
@@ -330,8 +429,15 @@ useRef
 useLayoutEffect
 useImperativeHandle
 
-Experimental/Future Hooks:
-==============================
-use
-useTransition
-useDeferredValue
+React 18+ and Experimental Hooks:
+=======================================>
+useId (React 18)
+useSyncExternalStore (React 18)
+useInsertionEffect (React 18)
+useTransition (Experimental)
+useDeferredValue (Experimental)
+use (Experimental)
+
+Debugging Hooks:
+====================>
+useDebugValue
