@@ -1,7 +1,8 @@
 // import Counter from './components/counter';
 // import Conditional from './components/Conditional';
 import './App.css'
-import UseCallbackHook1 from './components/hooks/UseCallbackHook1'
+import UseLayoutEffectHook3 from './components/hooks/UseLayoutEffectHook3'
+// import UseCallbackHook1 from './components/hooks/UseCallbackHook1'
 // import UseMemoHook1 from './components/hooks/UseMemoHook1'
 // import USeContextExample2 from './components/hooks/UseContextExample2';
 // import Ternary from './components/Ternary';
@@ -32,8 +33,9 @@ function App() {
         <CustomUseHook/>
         <USeContextExample2/>
         <UseReducerExample1/>
-        <UseMemoHook1/>*/}
-        <UseCallbackHook1/>
+        <UseMemoHook1/>
+        <UseCallbackHook1/>*/}
+        <UseLayoutEffectHook3/>
       </div>
     </>
   )

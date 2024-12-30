@@ -1,0 +1,23 @@
+useLayoutEffect in React
+useLayoutEffect is a React Hook that runs synchronously after all DOM mutations but before the browser paints the screen. It is useful for operations that require measuring or manipulating the DOM layout.
+
+
+Key Characteristics of useLayoutEffect:
+Runs Before Paint:
+
+It runs after the DOM has been updated but before the browser paints the changes on the screen.
+This ensures any DOM-related changes are applied before the user sees them.
+Blocking Behavior:
+
+Unlike useEffect, it blocks the browser's paint process until it finishes execution.
+Similar API to useEffect:
+
+Syntax and dependency behavior are identical to useEffect.
+
+
+Feature	                 useEffect	                                                   useLayoutEffect
+Execution Timing	     Runs after the render and after paint.	                        Runs after render but before paint.
+Blocking	             Non-blocking. The browser paints the screen before it runs.	Blocking. Prevents the browser from painting until it completes.
+Use Cases	           - Side effects that don't impact the UI layout.
+                        - API calls, logging, subscriptions.	                        - DOM measurements or mutations that must occur before the user sees the UI.
+Performance              Impact	Better for non-critical side effects.	                 Can impact performance if used improperly.
