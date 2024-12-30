@@ -37,6 +37,7 @@ function UseMemoHook1() {
         color: dark ? 'white' : 'black'
     }
     
+    // useCallback memoizes a function, ensuring it’s not re-created on every render. It's particularly useful when passing functions to child components to prevent unnecessary re-renders.
     // Memoized callback
     const handleClick = useCallback(() => {
         console.log("Button clicked!");
