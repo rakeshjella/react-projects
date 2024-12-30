@@ -1,14 +1,17 @@
 //import liraries
-import React, {useState,useMemo} from 'react';
+import React, {useState,useMemo, useCallback} from 'react';
 
 // React.memo is used to memoize a functional component. It prevents unnecessary re-renders by skipping rendering 
 // if the component's props haven't changed.
 // The Child component will only re-render if the name prop changes.
 // Clicking the button re-renders the Parent but skips re-rendering the Child
 
-const Child = React.memo(({name}) => {
+const Child = React.memo(({name, onClick }) => {
     console.log('calling child');
-    return <h1>hello {name}</h1>
+    return <>
+    <h1>hello {name}</h1>
+    <button onClick={onClick}>Click Me</button>
+    </>
 })
 
 // create a component
@@ -34,6 +37,11 @@ function UseMemoHook1() {
         color: dark ? 'white' : 'black'
     }
     
+    // Memoized callback
+    const handleClick = useCallback(() => {
+        console.log("Button clicked!");
+    }, []); // No dependencies, so the function is stable
+    
     function setToDouble(num) {
         console.log('double and slowing the calculation');
         for(let i=0;i<100000000;i++) {}
@@ -41,7 +49,7 @@ function UseMemoHook1() {
     }
     return (
         <>
-        <Child name="Rakesh"/>
+        <Child name="Rakesh" onClick={handleClick}/>
         <h1>Use  memo</h1>
         <div style={themeStyle}>{doubleNumber}</div>
         <input type='number' value={number}  
