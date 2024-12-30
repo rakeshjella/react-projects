@@ -21,7 +21,7 @@ export default function USeContextExample1() {
   )
 }
 
-function Form({ children }) {
+function Form() {
   return (
     <Panel title="Welcome">
       <Button>Sign up</Button>
