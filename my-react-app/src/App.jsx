@@ -1,6 +1,7 @@
 // import Counter from './components/counter';
 // import Conditional from './components/Conditional';
 import './App.css'
+import UseMemoHook1 from './components/hooks/UseMemoHook1'
 // import USeContextExample2 from './components/hooks/UseContextExample2';
 // import Ternary from './components/Ternary';
 // import RenderList from './components/RenderList';
@@ -9,7 +10,7 @@ import './App.css'
 // import UseEffectExample from './components/hooks/UseEffectExample';
 // import CustomUseHook from './components/hooks/CustomUseHook'
 
-import UseReducerExample1 from './components/hooks/UseReducerExample1'
+// import UseReducerExample1 from './components/hooks/UseReducerExample1'
 
 function App() {
   return (
@@ -28,8 +29,9 @@ function App() {
         <UseRefExample/>
         <UseEffectExample/>
         <CustomUseHook/>
-        <USeContextExample2/>*/}
-        <UseReducerExample1/>
+        <USeContextExample2/>
+        <UseReducerExample1/>*/}
+        <UseMemoHook1/>
       </div>
     </>
   )
