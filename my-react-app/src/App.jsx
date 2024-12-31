@@ -1,8 +1,9 @@
 // import Counter from './components/counter';
 // import Conditional from './components/Conditional';
 import './App.css'
+import UseDefferedHook from './components/hooks/UseDefferedHook'
 // import UseHook2 from './components/hooks/UseHook2'
-import UseTransitionHook from './components/hooks/UseTransitionHook'
+// import UseTransitionHook from './components/hooks/UseTransitionHook'
 // import UseHook1 from './components/hooks/UseIdHook1'
 // import UseLayoutEffectHook3 from './components/hooks/UseLayoutEffectHook3'
 // import UseCallbackHook1 from './components/hooks/UseCallbackHook1'
@@ -40,8 +41,9 @@ function App() {
         <UseCallbackHook1/>
         <UseLayoutEffectHook3/>
         <UseHook1/>
-        <UseHook2/>*/}
-        <UseTransitionHook/>
+        <UseHook2/>
+        <UseTransitionHook/>*/}
+        <UseDefferedHook/>
       </div>
     </>
   )

@@ -1,0 +1,26 @@
+useTransition vs. useDeferredValue
+Feature	          useTransition	                                                    useDeferredValue
+What It Does:	  Defers a state update and allows you to wrap non-urgent logic.	Defers a computed value to allow the UI to stay responsive.
+Trigger	:         Manually invoked using startTransition().	                        Automatically updates the deferred value.
+Use Case:         Useful for deferring expensive state updates.	                    Useful for deferring expensive computed values.
+Feedback:	      Provides isPending to show loading states.	                            No direct feedback mechanism.
+
+
+
+When to Use Each
+useTransition:
+====================
+When the logic for state updates involves complex or heavy computations.
+Provides better control over deferred updates by wrapping the logic in startTransition.
+
+
+useDeferredValue:
+=====================
+When a derived value or computation (like filtering or sorting) depends on a state but does not need to update immediately.
+Automatically creates a deferred version of the value, keeping the UI responsive.
+Example: Combining useTransition and useDeferredValue
+Scenario: Live Search with a Large Dataset
+In this example, we’ll use both hooks to optimize a search input:
+
+useTransition for deferring updates to the list of results.
+useDeferredValue to compute a delayed version of the search term for smoother rendering.
