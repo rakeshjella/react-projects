@@ -43,3 +43,7 @@
 .panel-dark{
   background-color: #000;
 }
+.CommentList{
+  height: 200px;
+  overflow-y: scroll;
+}
