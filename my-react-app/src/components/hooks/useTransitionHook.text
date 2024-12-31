@@ -1,0 +1,9 @@
+The useTransition hook in React is used to manage deferred updates to state, allowing for smoother UI transitions in certain cases. It is particularly helpful when you want to prioritize rendering certain updates (like showing a loading spinner or keeping the UI responsive) while deferring others (like rendering a complex or computationally heavy component).
+
+Key Concepts
+==================
+Deferred Updates: useTransition allows you to defer state updates that are not immediately urgent. These updates can happen later without blocking the UI.
+
+isPending: A boolean value returned by useTransition that tells you whether the deferred update is still in progress.
+
+startTransition: A function returned by useTransition that wraps the deferred update logi
